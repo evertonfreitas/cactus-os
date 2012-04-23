@@ -1,0 +1,44 @@
+Frist step to compile the source of python to your target architeture, considering that you have all toolchains of your architeture, is make the hostpython and the hostpgen to execute *.py source's in the python's dir.
+
+Then,
+
+1. Take the archive Python-2.7.2.tgz and unpack using the command: "$ tar -xvf Python-2.7.2.tgz". 
+2. Now, enter into the path that you extract ("$ cd Python-2.7.2/").
+3. Configure the source's to generate a common python executable and pgen ("$ ./configure" wait for a seconds and try "$ make python Parser/pgen").
+4. After many seconds, your hostpython and hostpgen are generated. Now you must to modify your archive names to restart Python-2.7.2 source configuration. To restart your source configuration try: "make distclean".
+
+Then this steps are:
+
+host@user:~/project_dir$ tar -xvf Python-2.7.2.tgz
+host@user:~/project_dir$ cd Python-2.7.2/
+host@user:~/project_dir/Python-2.7.2$ ./configure
+host@user:~/project_dir/Python-2.7.2$ make python Parser/pgen
+host@user:~/project_dir/Python-2.7.2$ make distclean 
+
+5. Now you must to apply a patch to others architetures. This patch can find in: http://randomsplat.com/id5-cross-compiling-python-for-embedded-linux.html.
+But you don't need download this patch. It's in this folder, then apply using the command: "patch -p1 < Python-2.7.2-xcompile.patch".
+Remember, the patch need stay in Python-2.7.2/ to done.
+
+6. Run the configure script settings your target toolchains. In our case:
+
+host@user:~/project_dir/Python-2.7.2$ CC=arm-linux-gcc CXX=arm-linux-g++ AR=arm-linux-ar RANLIB=arm-linux-ranlib ./configure --host=arm-linux --build=x86_64-linux-gnu --prefix=/python
+
+The CC, AR, RANLIB, CXX params represent the compiler of target architeture. Remeber that Python is a C code source, then we can compile this through the toolchains of arm-linux architeture.
+
+7. Make python binary and all libraries and modules with command:
+
+host@user:~/project_dir/Python-2.7.2$ make HOSTPYTHON=./hostpython HOSTPGEN=./Parser/hostpgen BLDSHARED="arm-linux-gcc -shared" CROSS_COMPILE=arm-linux- CROSS_COMPILE_TARGET=yes HOSTARCH=arm-linux BUILDARCH=x86_64-linux-gnu"
+
+8. After many time the Python is compiled. Now you must install into the ./_install path. Run:
+
+host@user:~/project_dir/Python-2.7.2$ make install HOSTPYTHON=./hostpython BLDSHARED="arm-linux-gcc -shared" CROSS_COMPILE=arm-linux- CROSS_COMPILE_TARGET=yes prefix=./_install
+
+If you run this steps correctly, run the command "python lib/python2.7/test/__init__.py" in ./install directory to verify if everythings ok.
+
+
+"Att. Everton Freitas 
+Geca Hardware/Software Engineer
+contato@evertonfreitas.com"
+
+
+
