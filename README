@@ -1,0 +1,10 @@
+Welcome to cactus-os repository. 
+
+The cactus project is basic OS to sensors management. Initially we intend to create many tools to manipulate any type of sensors through high level Programming Languages like Python, Lua, Ruby, etc...
+
+Actually the project is in initial status with only some images created with python-2.7 compiled to our target that is a FriendlyARM mini2440.
+
+
+[TEAM]
+
+-> Everton Freitas - Software Engineer - contato@evertonfreitas.com
