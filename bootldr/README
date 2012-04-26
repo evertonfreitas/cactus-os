@@ -1,24 +1,22 @@
-The Das U-boot is the world's most used boot manager for embedded systems. It's very fast and stable.
+Das U-Boot is world's must used bootloader manager in embedded systems. It's supports various architetures including arm that we uses in our project.
 
-Our project uses u-boot as boot manager. In this folder are the u-boot images compiled of various arch's: arm, ppc, between others. Also have patch if necessary.
+To compile the u-boot source for the mini2440 target, you must download the openmoko u-boot's version with: git clone git://repo.or.cz/u-boot-openmoko/mini2440.git.
 
-If you need the source of u-boot, you can download it in ftp://ftp.denx.de/pub/u-boot/u-boot-2012.04.tar.bz2 or uses the source in this folder.
+Or you can use the source in this folder.
 
-In the u-boot project webpage, there is more sources and tools to download. If you are interested in more information about this visit then.
+The steps to compile the u-boot for mini2440 are:
 
-To compile u-boot source to the FriendlyARM mini2440 architeture, you must download the u-boot version of openmoko. 
-
-For this steps you don't need download anything. Uses the sources in this folder.
-
-Do:
-
-host@you:~/Project$ git clone git://repo.or.cz/u-boot-openmoko/mini2440.git
-host@you:~/Project$ cd mini2440
-host@you:~/Project$ make mini2440_config
-host@you:~/Project$ make CROSS_COMPILE=arm-linux-
-
-Wait some time until everythings done. Now your u-boot image (u-boot.bin) is redy to deploy in your target.
+host@user:~/Project$ tar -xvf u-boot_openmoko.tar.gz
+host@user:~/Project$ cd u-boot/
+host@user:~/Project/u-boot$ make mini2440_config
+host@user:~/Project/u-boot$ make CROSS_COMPILE=arm-linux-
 
 
+Now you have the u-boot image (u-boot.bin) to use in your target.
+
+
+"Everton Freitas
+- GECA team - Software Engineer -
+contato@evertonfreitas.com"
 
 
