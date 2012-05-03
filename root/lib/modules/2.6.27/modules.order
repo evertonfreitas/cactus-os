@@ -1,0 +1,4 @@
+kernel/drivers/char/hw_random/rng-core.ko
+kernel/drivers/scsi/scsi_wait_scan.ko
+kernel/drivers/usb/gadget/g_ether.ko
+kernel/drivers/usb/gadget/g_file_storage.ko
